@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MarketPilot — Market Intelligence</title>
+<style>
+:root{--bg:#05060b;--surface:#0b0e17;--surface2:#101421;--surface3:#151a2a;--line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.14);--text:#f7f8ff;--muted:#8c95aa;--purple:#8b6cff;--violet:#6d4aff;--cyan:#39e6c0;--blue:#62a8ff;--pink:#d879ff;--red:#ff718b;--yellow:#f5c45d;--shadow:0 30px 100px rgba(0,0,0,.42)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#05060b;color:var(--text);font:14px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}body:before,body:after{content:"";position:fixed;z-index:-2;border-radius:50%;filter:blur(90px);pointer-events:none}.body{}
+body:before{width:520px;height:520px;left:-180px;top:-180px;background:rgba(116,77,255,.16)}body:after{width:460px;height:460px;right:-180px;top:260px;background:rgba(36,225,192,.08)}button,input{font:inherit}.app{max-width:1480px;margin:auto;padding:24px 28px 70px}.top{height:58px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#9b7aff 0%,#5e9cff 45%,#36e1b8 100%);display:grid;place-items:center;font-weight:950;color:#070912;box-shadow:0 0 45px rgba(126,91,255,.32);position:relative}.logo:after{content:"";position:absolute;inset:1px;border-radius:13px;border:1px solid rgba(255,255,255,.35)}.brand h1{font-size:17px;letter-spacing:-.02em;margin:0}.brand p{margin:1px 0 0;color:#70798e;font-size:11px}.top-right{display:flex;align-items:center;gap:10px}.badge{padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:#aab3c7;background:rgba(255,255,255,.035);font-size:10px;letter-spacing:.07em}.live-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 15px var(--cyan)}
+.hero{position:relative;overflow:hidden;padding:56px 54px 48px;border:1px solid var(--line2);border-radius:32px;background:linear-gradient(135deg,rgba(115,78,255,.18),rgba(11,14,23,.92) 43%,rgba(17,23,35,.92));box-shadow:var(--shadow)}.hero:before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;right:-250px;top:-360px;background:radial-gradient(circle,rgba(104,76,255,.25),transparent 66%);pointer-events:none}.hero:after{content:"";position:absolute;left:32%;bottom:-330px;width:650px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(47,221,190,.07),transparent 67%);pointer-events:none}.hero-grid{position:relative;z-index:1;max-width:1080px}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:#b7a7ff;text-transform:uppercase;letter-spacing:.16em;font-size:10px;font-weight:900}.eyebrow:before{content:"";width:22px;height:1px;background:linear-gradient(90deg,var(--purple),transparent)}.hero h2{font-size:clamp(38px,5vw,70px);line-height:.99;letter-spacing:-.055em;margin:17px 0 18px;max-width:970px}.hero h2 em{font-style:normal;background:linear-gradient(100deg,#fff 20%,#b6a5ff 56%,#65e6ce);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:#a5aec1;max-width:760px;margin:0 0 28px;font-size:15px}.search{display:flex;gap:10px;max-width:1010px;position:relative}.search-wrap{flex:1;position:relative}.search-wrap:before{content:"⌕";position:absolute;left:18px;top:50%;transform:translateY(-51%);font-size:21px;color:#737d93;z-index:2}.search input{width:100%;min-width:0;height:58px;padding:0 18px 0 50px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(3,5,11,.72);color:#fff;outline:none;box-shadow:inset 0 1px rgba(255,255,255,.035)}.search input::placeholder{color:#657086}.search input:focus{border-color:rgba(139,108,255,.75);box-shadow:0 0 0 4px rgba(139,108,255,.11),0 10px 40px rgba(0,0,0,.18)}.search button{height:58px;border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:0 24px;background:linear-gradient(135deg,#967aff,#6247e8);color:#fff;font-weight:850;cursor:pointer;box-shadow:0 14px 35px rgba(102,71,232,.27);transition:.2s transform,.2s box-shadow,.2s filter;white-space:nowrap}.search button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 18px 45px rgba(102,71,232,.4);filter:brightness(1.08)}.search button:disabled{opacity:.65;cursor:wait}.hero-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:17px;color:#68738a;font-size:10px}.hero-meta span{display:flex;align-items:center;gap:7px}.hero-meta b{color:#a9b2c5;font-weight:700}.status{margin-top:14px;color:#778298;font-size:11px;min-height:18px}.loading-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:11px 0 var(--cyan),22px 0 var(--cyan);margin-right:29px;animation:pulse 1s infinite alternate}.error{color:#ff9eae!important}@keyframes pulse{to{opacity:.3}}
+.dashboard-intro{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:34px 2px 14px}.dashboard-intro h3{margin:0;font-size:20px;letter-spacing:-.025em}.dashboard-intro p{margin:4px 0 0;color:#697389;font-size:11px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.card{background:linear-gradient(145deg,rgba(15,19,31,.94),rgba(9,12,21,.9));border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 16px 50px rgba(0,0,0,.16);position:relative;overflow:hidden}.card:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.025),transparent 35%)}.metric{min-height:130px;display:flex;justify-content:space-between;align-items:flex-start;transition:.2s transform,.2s border-color}.metric:hover{transform:translateY(-3px);border-color:var(--line2)}.metric .icon{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,rgba(139,108,255,.18),rgba(57,230,192,.08));display:grid;place-items:center;color:#b8aaff;border:1px solid rgba(139,108,255,.13);font-size:17px}.label{color:#7f899e;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:800}.value{font-size:31px;font-weight:900;margin-top:8px;letter-spacing:-.055em}.sub{font-size:10px;color:#5f697d;margin-top:5px}.section{margin-top:18px}.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:12px}.section-head h3{margin:0;font-size:14px;letter-spacing:-.015em}.section-head span{font-size:10px;color:#69738a}.two{display:grid;grid-template-columns:1.16fr .84fr;gap:15px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.confidence{display:flex;align-items:center;gap:22px;min-height:150px}.ring{width:122px;height:122px;border-radius:50%;background:conic-gradient(var(--cyan) calc(var(--score)*1%),rgba(255,255,255,.055) 0);display:grid;place-items:center;flex:none;position:relative;box-shadow:0 0 35px rgba(57,230,192,.07)}.ring:before{content:"";position:absolute;width:92px;height:92px;border-radius:50%;background:#0b0f18;border:1px solid rgba(255,255,255,.05)}.ring span{position:relative;font-size:28px;font-weight:900;letter-spacing:-.06em}.confidence h4{margin:0 0 5px;font-size:17px}.confidence p{margin:0;color:#737d91;font-size:11px;max-width:330px}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}.chip{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:5px 8px;border-radius:999px;color:#9ca6ba;font-size:10px}.bars{display:grid;gap:12px;padding:3px 0}.bar-row{display:grid;grid-template-columns:110px 1fr 30px;align-items:center;gap:9px}.bar-row label{color:#919bae;font-size:10px}.bar{height:7px;border-radius:20px;background:#1a2030;overflow:hidden}.bar i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,var(--purple),var(--cyan));box-shadow:0 0 14px rgba(139,108,255,.22)}.bar-row b{font-size:10px;text-align:right;color:#d7dbea}.analysis-card{min-height:190px}.analysis-card .ai-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(139,108,255,.12);color:#bcaeff;margin-bottom:16px}.analysis-card h4{margin:0 0 8px;font-size:13px}.analysis-card p{margin:0;color:#8993a7;font-size:11px;line-height:1.65}.analysis-card .ai-tag{display:inline-block;margin-top:14px;font-size:9px;color:#817aaf;background:rgba(139,108,255,.08);border:1px solid rgba(139,108,255,.12);border-radius:999px;padding:4px 7px}.list{display:grid;gap:8px}.item{padding:13px 14px;border:1px solid rgba(255,255,255,.065);border-radius:14px;background:rgba(255,255,255,.018);transition:.18s background,.18s border-color,.18s transform}.item:hover{background:rgba(255,255,255,.035);border-color:rgba(139,108,255,.18);transform:translateY(-1px)}.item strong{display:block;font-size:11px;line-height:1.5}.item p{margin:5px 0 0;color:#7f899d;font-size:10px;line-height:1.6}.item .eid{color:#aa99ff;font-weight:850}.item a{color:#72b7ff;text-decoration:none;font-size:10px}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tab{border:1px solid var(--line);background:rgba(255,255,255,.018);color:#778196;border-radius:999px;padding:7px 11px;cursor:pointer;font-size:10px;transition:.18s}.tab:hover{color:#cbd1df;border-color:var(--line2)}.tab.active{background:linear-gradient(135deg,rgba(139,108,255,.2),rgba(57,230,192,.07));border-color:rgba(139,108,255,.42);color:#ddd7ff;box-shadow:0 6px 20px rgba(80,55,180,.12)}.evidence{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.evidence .item{min-height:130px}.source{display:flex;justify-content:space-between;gap:10px;margin-top:9px;color:#596479;font-size:9px}.score{color:#65dbbc;font-weight:850}.empty{color:#6f798e;padding:28px;text-align:center;border:1px dashed var(--line2);border-radius:14px;font-size:11px}.model-pill{padding:5px 9px;border:1px solid rgba(57,230,192,.14);background:rgba(57,230,192,.05);border-radius:999px;color:#79d9c2;font-size:9px}.footer{text-align:center;color:#4e586d;font-size:10px;margin-top:42px;padding-top:20px;border-top:1px solid rgba(255,255,255,.05)}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(2,1fr)}.two,.three{grid-template-columns:1fr}.hero{padding:45px}.evidence{grid-template-columns:1fr}}
+@media(max-width:680px){.app{padding:16px}.top{margin-bottom:18px}.badge{display:none}.hero{padding:30px 22px;border-radius:24px}.hero h2{font-size:38px}.search{flex-direction:column}.search button{width:100%}.grid{grid-template-columns:1fr}.confidence{align-items:flex-start;flex-direction:column}.dashboard-intro{align-items:flex-start;flex-direction:column}.bar-row{grid-template-columns:90px 1fr 28px}.hero-meta{gap:10px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top"><div class="brand"><div class="logo">M</div><div><h1>MarketPilot</h1><p>Evidence-backed market intelligence</p></div></div><div class="top-right"><span class="live-dot"></span><div class="badge">SERPAPI · EVIDENCE ENGINE · AI</div></div></header>
+  <section class="hero"><div class="hero-grid"><div class="eyebrow">Founder intelligence engine</div><h2>Know the market before you <em>build.</em></h2><p>Turn a raw product idea into a live market map — competitors, pricing, customer pain, market signals and opportunities, all connected to evidence.</p><div class="search"><div class="search-wrap"><input id="idea" value="AI customer support for Indian D2C brands" placeholder="Describe what you want to build..."/></div><button id="run">Analyze Market <span>→</span></button></div><div class="hero-meta"><span>✦ <b>5 intelligence lenses</b></span><span>◈ <b>Source-backed findings</b></span><span>◎ <b>AI synthesis</b></span></div><div id="status" class="status"></div></div></section>
+
+  <div id="dashboard" style="display:none"><div class="dashboard-intro"><div><h3>Market intelligence report</h3><p>Your evidence-backed snapshot is ready to explore.</p></div><div id="model" class="model-pill"></div></div>
+    <section class="grid" id="metrics"></section>
+    <section class="section two"><div class="card"><div class="section-head"><h3>Evidence confidence</h3><span>Deterministic score</span></div><div class="confidence"><div id="ring" class="ring"><span id="confidence">0</span></div><div><h4 id="confidenceLabel">Evidence strength</h4><p id="confidenceText">Calculated from signal strength and source diversity.</p><div class="chips" id="overviewChips"></div></div></div></div><div class="card"><div class="section-head"><h3>Evidence coverage</h3><span>Search categories</span></div><div class="bars" id="bars"></div></div></section>
+
+    <section class="section"><div class="section-head"><h3>AI market analysis</h3><span>Evidence-grounded synthesis</span></div><div class="three" id="analysisCards"></div></section>
+
+    <section class="section two"><div class="card"><div class="section-head"><h3>Competitor landscape</h3><span>Top evidence</span></div><div class="list" id="competitors"></div></div><div class="card"><div class="section-head"><h3>Pricing insights</h3><span>Market signals</span></div><div class="list" id="pricing"></div></div></section>
+
+    <section class="section two"><div class="card"><div class="section-head"><h3>Customer pain points</h3><span>What the market is struggling with</span></div><div class="list" id="pain"></div></div><div class="card"><div class="section-head"><h3>Market opportunities</h3><span>Potential whitespace</span></div><div class="list" id="opportunities"></div></div></section>
+
+    <section class="section two"><div class="card"><div class="section-head"><h3>Market signals</h3><span>Trends & adoption</span></div><div class="list" id="signals"></div></div><div class="card"><div class="section-head"><h3>Risks & uncertainties</h3><span>Don't ignore these</span></div><div class="list" id="risks"></div></div></section>
+
+    <section class="section"><div class="card"><div class="section-head"><h3>Recommended positioning</h3><span>Founder-oriented synthesis</span></div><div class="list" id="positioning"></div></div></section>
+
+    <section class="section"><div class="section-head"><h3>Evidence explorer</h3><span>Trace conclusions back to sources</span></div><div class="card"><div class="tabs" id="tabs"></div><div class="evidence" id="evidence"></div></div></section>
+  </div>
+  <div class="footer">MarketPilot · Search → Evidence → Reasoning → Decision support</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);let DATA=null,current='all';
+const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+function list(items,el){el.innerHTML=(items||[]).map(x=>`<div class="item"><strong>${esc(x)}</strong></div>`).join('')||'<div class="empty">No evidence available.</div>'}
+function evidenceItem(x){return `<div class="item"><strong><span class="eid">${esc(x.id)}</span> · ${esc(x.title)}</strong><p>${esc(x.snippet)}</p><div class="source"><span>${esc(x.source||new URL(x.url||'http://localhost').hostname)}</span><span class="score">Signal ${x.signalStrength}/100</span></div><div class="source"><a href="${esc(x.url)}" target="_blank" rel="noopener">Open source ↗</a></div></div>`}
+function render(d){DATA=d;$('dashboard').style.display='block';const r=d.report||{},e=d.evidence||{},a=d.aiAnalysis||{};const o=r.overview||{};const conf=e.confidence??o.confidence??0;
+$('metrics').innerHTML=[['◈','Evidence',e.totalEvidence??o.totalEvidence??0,'items collected'],['◎','Sources',o.sourcesAnalyzed??0,'sources analyzed'],['◌','Domains',e.sourceDiversity??o.sourceDiversity??0,'unique domains'],['✦','Confidence',conf+'%','evidence strength']].map(m=>`<div class="card metric"><div><div class="label">${m[1]}</div><div class="value">${m[2]}</div><div class="sub">${m[3]}</div></div><div class="icon">${m[0]}</div></div>`).join('');
+$('ring').style.setProperty('--score',Math.min(conf,100));$('confidence').textContent=conf+'%';$('confidenceLabel').textContent=conf>=75?'Strong evidence base':conf>=50?'Moderate evidence base':'Limited evidence base';$('confidenceText').textContent=`${e.sourceDiversity??o.sourceDiversity??0} unique domains across ${e.totalEvidence??0} evidence items.`;
+$('overviewChips').innerHTML=[['Competitors',r.competitor?.count||0],['Pricing',r.pricing?.count||0],['Pain',r.customerPain?.count||0],['Signals',r.marketSignals?.count||0],['Opportunities',r.opportunity?.count||0]].map(x=>`<span class="chip">${x[0]} · ${x[1]}</span>`).join('');
+const cc=e.categoryCounts||{};const max=Math.max(...Object.values(cc),1);$('bars').innerHTML=[['Competitors',cc.competitors],['Pricing',cc.pricing],['Customer pain',cc.customerPain],['Market signals',cc.marketSignals],['Opportunities',cc.opportunities]].map(([n,v])=>`<div class="bar-row"><label>${n}</label><div class="bar"><i style="width:${((v||0)/max)*100}%"></i></div><b>${v||0}</b></div>`).join('');
+$('model').textContent=`${a.model||'AI analysis'}${a.fallbackUsed?' · fallback':''}`;
+const analysisBlocks=[['✦','Executive summary',a.executiveSummary],['◈','Market opportunities',(a.marketOpportunities||[]).slice(0,3).join(' · ')],['⌁','Recommended positioning',(a.recommendedPositioning||[]).slice(0,3).join(' · ')]];
+$('analysisCards').innerHTML=analysisBlocks.map(x=>`<div class="card analysis-card"><div class="ai-icon">${x[0]}</div><h4>${esc(x[1])}</h4><p>${esc(x[2]||'No synthesis returned.')}</p><span class="ai-tag">AI · evidence grounded</span></div>`).join('');
+list(a.competitorLandscape,$('competitors'));list(a.pricingInsights,$('pricing'));list(a.customerPainPoints,$('pain'));list(a.marketOpportunities,$('opportunities'));list(a.marketSignals,$('signals'));list(a.risks,$('risks'));list(a.recommendedPositioning,$('positioning'));
+const groups=[['all','All'],['competitor','Competitors'],['pricing','Pricing'],['customer_pain','Pain'],['market_signal','Signals'],['opportunity','Opportunities']];$('tabs').innerHTML=groups.map(g=>`<button class="tab ${current===g[0]?'active':''}" onclick="filterEvidence('${g[0]}')">${g[1]}</button>`).join('');filterEvidence(current);}
+function filterEvidence(type){current=type;if(!DATA)return;const evidenceData=DATA.evidence||{};const evidenceArray=Array.isArray(evidenceData)?evidenceData:(Array.isArray(evidenceData.evidence)?evidenceData.evidence:[]);document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase().includes(type==='all'?'all':({competitor:'competitors',pricing:'pricing',customer_pain:'pain',market_signal:'signals',opportunity:'opportunities'}[type]||type))));const arr=type==='all'?evidenceArray:evidenceArray.filter(x=>x&&x.type===type);$('evidence').innerHTML=arr.map(evidenceItem).join('')||'<div class="empty">No matching evidence.</div>';}
+let activeController=null;let requestNumber=0;
+
+function setStatus(message, loading=false){
+  $('status').innerHTML=loading
+    ? `<span class="loading-dot"></span>${esc(message)}`
+    : esc(message);
+}
+
+async function run(){
+  const idea=$('idea').value.trim();
+  if(!idea){
+    setStatus('Enter a product idea first.');
+    $('idea').focus();
+    return;
+  }
+
+  // Cancel any previous request so changing the idea never leaves an old
+  // request competing with the new one.
+  if(activeController) activeController.abort();
+  const controller=new AbortController();
+  activeController=controller;
+  const thisRequest=++requestNumber;
+  const timeout=setTimeout(()=>controller.abort(),90000);
+  const btn=$('run');
+
+  btn.disabled=true;
+  btn.textContent='Analyzing…';
+  $('dashboard').style.display='none';
+  setStatus('Searching competitors, pricing, pain points and market signals…',true);
+
+  // Give the user useful progress feedback while the backend does its work.
+  const progressTimer=setTimeout(()=>{
+    if(thisRequest===requestNumber){
+      setStatus('Evidence collected. Waiting for the AI reasoning layer…',true);
+    }
+  },7000);
+
+  try{
+    const res=await fetch(`/api/market-analysis?idea=${encodeURIComponent(idea)}`,{
+      signal:controller.signal,
+      cache:'no-store',
+      headers:{'Accept':'application/json'}
+    });
+
+    const raw=await res.text();
+    let d;
+    try{d=JSON.parse(raw)}catch{throw new Error(`Server returned an invalid response (${res.status}).`)}
+
+    if(!res.ok||!d.success) throw new Error(d.error||`Analysis failed (${res.status}).`);
+    if(thisRequest!==requestNumber)return;
+
+    render(d);
+    setStatus(`Analysis complete for “${idea}”.`);
+  }catch(err){
+    if(thisRequest!==requestNumber)return;
+
+    if(err.name==='AbortError'){
+      // A new request also aborts the old one; only show timeout if this
+      // request is still the active request.
+      setStatus('Analysis timed out after 90 seconds. The search/AI service took too long — try again.');
+    }else{
+      setStatus(err.message||'Unable to complete the analysis.');
+      $('status').classList.add('error');
+    }
+  }finally{
+    clearTimeout(timeout);
+    clearTimeout(progressTimer);
+    if(thisRequest===requestNumber){
+      activeController=null;
+      btn.disabled=false;
+      btn.textContent='Analyze Market →';
+    }
+  }
+}
+
+$('run').addEventListener('click',run);
+$('idea').addEventListener('keydown',e=>{if(e.key==='Enter')run()});
+
+// Intentionally no automatic analysis on page load.
+// The user chooses when to spend a SerpApi + AI request.
+</script>
+</body></html>
